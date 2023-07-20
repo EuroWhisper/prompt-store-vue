@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Prompt List</h1>
-    <div v-for="prompt in prompts">
+    <h1 class="text-xl">Prompt List</h1>
+    <div v-for="prompt in prompts" class="p-12">
       <p>ID: {{ prompt.id }}</p>
       <p>User: {{ prompt.userId }}</p>
       <p>Prompt: {{ prompt.prompt }}</p>
