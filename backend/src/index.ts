@@ -1,16 +1,23 @@
 import express, { Request, Response } from 'express';
+import { PrismaClient } from '@prisma/client';
 import { Prompt } from './types';
 
 const app = express();
 const port = 8000;
 
-app.get('/prompts', (req: Request, res: Response) => {
-  const data: Prompt[] = [
-    { id: 1, userId: 1, prompt: 'What is your name?' },
-    { id: 2, userId: 1, prompt: 'What is your quest?' },
-  ];
+app.get('/prompts', async (req: Request, res: Response) => {
+  console.log('GET /prompts');
+  const prisma = new PrismaClient();
 
-  res.json(data);
+  try {
+    const data = await prisma.prompt.findMany();
+
+    res.json(data);
+  } catch (error) {
+    res.json({ error });
+  }
+
+  prisma.$disconnect();
 });
 
 app.listen(port, () => {
