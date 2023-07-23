@@ -11,8 +11,9 @@ const {
 <template>
   <div>
     <h1 class="text-xl">Prompt List</h1>
+    <PromptForm />
     <div v-for="prompt in prompts">
-      <PromptCard :prompt="{ prompt }" />
+      <PromptCard :prompt="prompt" />
     </div>
     <div v-if="pending">
       <p>Loading...</p>
