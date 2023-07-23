@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
-import { Prompt } from './types';
 
 const app = express();
 const port = 8000;
