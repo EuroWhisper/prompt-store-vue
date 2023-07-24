@@ -3,9 +3,18 @@ import IconTrash from '../assets/icons/icon-trash.svg';
 
 import { Prompt } from '../types';
 
-defineProps<{
+const props = defineProps<{
   prompt: Prompt;
 }>();
+
+const emit = defineEmits(['promptDeleted']);
+
+const deletePrompt = async () => {
+  await $fetch(`http://localhost:8000/prompt/${props.prompt.id.toString()}`, {
+    method: 'DELETE',
+  });
+  emit('promptDeleted');
+};
 </script>
 
 <template>
@@ -13,6 +22,6 @@ defineProps<{
     <p>ID: {{ prompt.id }}</p>
     <p>User: {{ prompt.userId }}</p>
     <p>Prompt: {{ prompt.prompt }}</p>
-    <IconTrash class="text-xl" />
+    <IconTrash class="text-xl" @click="deletePrompt" />
   </div>
 </template>

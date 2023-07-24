@@ -44,6 +44,24 @@ app.post('/prompt', bodyParser.json(), async (req: Request, res: Response) => {
   prisma.$disconnect();
 });
 
+app.delete('/prompt/:id', async (req: Request, res: Response) => {
+  const prisma = new PrismaClient();
+
+  try {
+    const data = await prisma.prompt.delete({
+      where: {
+        id: Number(req.params.id),
+      },
+    });
+
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+
+  prisma.$disconnect();
+});
+
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });

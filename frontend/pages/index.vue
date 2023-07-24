@@ -14,7 +14,7 @@ const {
     <h1 class="text-xl">Prompt List</h1>
     <PromptForm @prompt-saved="refresh" />
     <div v-for="prompt in prompts">
-      <PromptCard :prompt="prompt" />
+      <PromptCard :prompt="prompt" @prompt-deleted="refresh" />
     </div>
     <div v-if="pending">
       <p>Loading...</p>
