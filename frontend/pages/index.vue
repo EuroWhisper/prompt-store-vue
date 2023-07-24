@@ -5,13 +5,14 @@ const {
   data: prompts,
   pending,
   error,
+  refresh,
 } = await useFetch<Prompt[]>('http://localhost:8000/prompts');
 </script>
 
 <template>
   <div>
     <h1 class="text-xl">Prompt List</h1>
-    <PromptForm />
+    <PromptForm @prompt-saved="refresh" />
     <div v-for="prompt in prompts">
       <PromptCard :prompt="prompt" />
     </div>

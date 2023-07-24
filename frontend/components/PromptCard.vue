@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import IconTrash from '../assets/icons/icon-trash.svg';
+
 import { Prompt } from '../types';
 
 defineProps<{
@@ -11,5 +13,6 @@ defineProps<{
     <p>ID: {{ prompt.id }}</p>
     <p>User: {{ prompt.userId }}</p>
     <p>Prompt: {{ prompt.prompt }}</p>
+    <IconTrash class="text-xl" />
   </div>
 </template>
